@@ -1,4 +1,4 @@
-<?php
+<?php 
 // If form is submitted, capture data
 $isSubmitted = isset($_POST['submit']);
 ?>

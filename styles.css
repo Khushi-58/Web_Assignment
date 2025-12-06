@@ -1,0 +1,418 @@
+/* Professional UI — styles.css
+   - Responsive layout
+   - Accessible contrast
+   - Clean typographic scale
+   - Ready for resume / biodata pages
+*/
+
+:root{
+  /* Palette */
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --surface-2: #f3f4f6;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --accent: #0b63f6;
+  --accent-600: #084ec4;
+  --border: #e6e9ef;
+
+  /* Spacing & geometry */
+  --container: 1100px;
+  --radius: 12px;
+  --gap: 1.25rem;
+
+  /* Elevation */
+  --shadow-sm: 0 6px 18px rgba(15,23,42,0.06);
+  --shadow-md: 0 12px 30px rgba(15,23,42,0.08);
+
+  /* Type */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --base: 16px;
+  --scale-lg: 1.5rem; /* 24px */
+  --scale-xl: 2.5rem; /* 40px */
+
+  transition: 0.22s ease;
+}
+
+*{box-sizing:border-box}
+html{font-size:var(--base); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.55;
+}
+
+/* Page container */
+.container{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:1.25rem;
+}
+
+/* Header / Nav */
+.site-header{
+  background:transparent;
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter:saturate(120%) blur(4px);
+  border-bottom:1px solid rgba(15,23,42,0.03);
+}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{
+  font-weight:700;
+  color:var(--accent);
+  text-decoration:none;
+  font-size:1.05rem;
+  letter-spacing:0.2px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--muted);
+  padding:0.45rem 0.6rem;
+  border-radius:8px;
+  font-weight:600;
+  transition:all 0.18s ease;
+  font-size:0.95rem;
+}
+.nav a:hover,
+.nav a[aria-current="page"]{
+  color:var(--accent);
+  background:rgba(11,99,246,0.06);
+}
+
+/* Mobile menu toggle */
+.menu-toggle{
+  display:none;
+  background:none;
+  border:0;
+  font-size:1.25rem;
+  cursor:pointer;
+}
+
+/* Hero */
+.hero{
+  padding:3.25rem 0;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:2rem;
+  align-items:center;
+}
+.hero-text h1{
+  margin:0 0 0.6rem 0;
+  font-size:var(--scale-xl);
+  line-height:1.02;
+  font-weight:800;
+}
+.hero-text p{
+  margin:0 0 1rem 0;
+  color:var(--muted);
+  max-width:56ch;
+  font-size:1rem;
+}
+.hero-actions{display:flex;gap:0.6rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;
+  padding:0.65rem 1rem;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.95rem;
+  transition:all 0.18s ease;
+  box-shadow:none;
+  border:0;
+}
+.btn.primary{
+  background:var(--accent);
+  color:#fff;
+}
+.btn.primary:hover{background:var(--accent-600)}
+.btn.ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+/* Cards / layout */
+.card{
+  display:flex;
+  gap:var(--gap);
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  padding:1.25rem;
+  align-items:flex-start;
+}
+.profile{
+  width:100%;
+  border-radius:10px;
+  object-fit:cover;
+  display:block;
+  border:1px solid var(--border);
+}
+
+/* Resume layout specifics */
+.card-left{
+  width:300px;
+  min-width:220px;
+  flex-shrink:0;
+}
+.card-left h2{margin-top:0.75rem;margin-bottom:0.15rem;font-size:1.25rem}
+.card-left .muted{color:var(--muted);font-weight:600;margin-bottom:1rem}
+.contact-list, .skills{list-style:none;padding:0;margin:0}
+.contact-list li, .skills li{padding:0.25rem 0;color:var(--muted);font-size:0.95rem}
+
+/* Right column */
+.card-right{flex:1}
+.card-right section{margin-bottom:1.1rem}
+.card-right h3{margin:0 0 0.5rem 0;font-size:1.05rem}
+.job h4{margin:0;font-size:1rem}
+.job .muted{font-size:0.9rem;color:var(--muted);margin-bottom:0.4rem}
+.card-right ul{margin:0.4rem 0 0 1.1rem}
+
+/* Biodata table */
+.biodata-table{
+  width:100%;
+  border-collapse:collapse;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--card);
+  box-shadow:var(--shadow-sm);
+}
+.biodata-table th{
+  text-align:left;
+  padding:0.8rem 0.9rem;
+  width:34%;
+  background:var(--surface-2);
+  color:var(--muted);
+  font-weight:700;
+  font-size:0.95rem;
+  border-bottom:1px solid var(--border);
+}
+.biodata-table td{
+  padding:0.8rem 0.9rem;
+  border-bottom:1px dashed rgba(15,23,42,0.04);
+  font-size:0.975rem;
+}
+
+/* Footer */
+.site-footer{
+  padding:1rem 0;
+  color:var(--muted);
+  text-align:center;
+  font-size:0.95rem;
+}
+
+/* Utilities */
+.muted{color:var(--muted)}
+.kv{display:flex;justify-content:space-between;gap:1rem}
+.small{font-size:0.9rem;color:var(--muted)}
+
+/* Print-friendly */
+@media print{
+  body{background:#fff;color:#000}
+  .site-header, .site-footer, .menu-toggle, .nav a{display:none}
+  .container{padding:0}
+  .card{box-shadow:none;border-radius:0}
+  .btn{display:none}
+}
+
+/* Responsive rules */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr 300px}
+  .container{padding:1rem}
+  .card{flex-direction:column}
+  .card-left{width:100%}
+}
+@media (max-width:720px){
+  .hero-inner{grid-template-columns:1fr}
+  .menu-toggle{display:inline-block}
+  .nav{display:none;position:absolute;right:1rem;top:64px;background:var(--card);padding:0.6rem;border-radius:10px;box-shadow:var(--shadow-md);flex-direction:column}
+  .nav a{display:block;padding:0.55rem 0.9rem}
+  .card{padding:1rem}
+}
+/* ---------------------------
+   Resume & Bio-data — Professional styles
+   Paste into assets/css/styles.css
+   --------------------------- */
+
+/* Container tweaks for resume / biodata pages */
+.page { padding: 2rem 0; }
+.card { gap: 2rem; align-items:flex-start; }
+/* Left column (profile/contacts) */
+.card-left {
+  background: linear-gradient(180deg, rgba(11,99,246,0.04), rgba(56,178,172,0.03));
+  border-radius: 14px;
+  padding: 1.2rem;
+  border: 1px solid rgba(11,99,246,0.08);
+  box-shadow: 0 8px 22px rgba(15,23,42,0.04);
+}
+.card-left .profile {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit:cover;
+  border: 3px solid var(--accent);
+  display:block;
+  margin-bottom: 0.8rem;
+}
+.card-left h2 { font-size:1.25rem; margin-bottom:0.2rem; color:var(--secondary); }
+.card-left .muted { color:var(--text); font-weight:600; margin-bottom:0.75rem; }
+
+/* Contact list tile */
+.contact-list li {
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  padding:0.45rem 0;
+  color:var(--text);
+  font-size:0.95rem;
+}
+.contact-list li::before {
+  content: '•';
+  color: var(--accent);
+  font-weight:700;
+  margin-right:0.3rem;
+}
+
+/* Skill badges & progress */
+.skills { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.6rem; }
+.skill-badge {
+  background: linear-gradient(90deg, rgba(11,99,246,0.08), rgba(56,178,172,0.05));
+  color:var(--secondary);
+  padding:0.35rem 0.7rem;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.85rem;
+  border:1px solid rgba(11,99,246,0.06);
+}
+
+/* Skill progress rows (for more granular proficiency) */
+.skill-row { margin-top:0.6rem; }
+.skill-label { display:flex; justify-content:space-between; font-weight:600; color:var(--text); font-size:0.9rem; }
+.progress {
+  height:10px;
+  background: #e6eefb;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:0.35rem;
+  border:1px solid rgba(15,23,42,0.03);
+}
+.progress > i {
+  display:block;
+  height:100%;
+  width:60%; /* set per-skill inline style or via class like .p80 {width:80%} */
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  border-radius:999px;
+}
+
+/* Right column content */
+.card-right h3 { margin-bottom:0.6rem; color:var(--secondary); }
+.job { margin-bottom:0.9rem; padding-bottom:0.6rem; border-bottom:1px dashed rgba(15,23,42,0.04); }
+.job h4 { font-size:1rem; margin-bottom:0.15rem; }
+.job .muted { font-size:0.9rem; color:var(--muted); }
+
+/* Timeline styling for experience/education */
+.timeline { position:relative; padding-left:1rem; margin-top:0.6rem; }
+.timeline::before {
+  content:'';
+  position:absolute;
+  left:8px;
+  top:0;
+  bottom:0;
+  width:3px;
+  background: linear-gradient(180deg, var(--accent), var(--secondary));
+  border-radius:3px;
+  opacity:0.12;
+}
+.timeline-item { position:relative; margin-bottom:1.25rem; padding-left:1.1rem; }
+.timeline-item::before {
+  content:'';
+  position:absolute;
+  left: -6px;
+  top:6px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--accent);
+  border:3px solid var(--white);
+  box-shadow:0 4px 10px rgba(11,99,246,0.14);
+}
+
+/* Projects list */
+.projects ul { list-style: disc; margin-left:1.25rem; color:var(--text); }
+
+/* Download / Print button */
+.download-btn {
+  display:inline-block;
+  padding:0.6rem 1rem;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  color:#fff;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 10px 20px rgba(11,99,246,0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.download-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 30px rgba(11,99,246,0.14); }
+
+/* Bio-data table polish */
+.biodata-table {
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(15,23,42,0.05);
+}
+.biodata-table th {
+  background: linear-gradient(90deg, rgba(11,99,246,0.08), rgba(56,178,172,0.05));
+  color:var(--secondary);
+  font-weight:800;
+  letter-spacing:0.2px;
+}
+.biodata-table td { color:var(--text); }
+
+/* Declaration box */
+.declaration {
+  margin-top:1.2rem;
+  padding:1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,255,0.8));
+  border:1px solid rgba(15,23,42,0.03);
+  border-radius:8px;
+  font-size:0.95rem;
+  color:var(--text);
+}
+
+/* Two-column bio-data layout */
+.biodata-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:1rem;
+  align-items:start;
+}
+.biodata-grid .left { min-width:200px; }
+
+/* Print styles: hide nonessential elements and ensure high contrast */
+@media print {
+  .download-btn, .site-header, .site-footer, .menu-toggle, .nav { display:none !important; }
+  body { background:#fff; color:#000; }
+  .card, .container { box-shadow:none; border:0; }
+}
+
+/* Responsive tweaks */
+@media (max-width:880px) {
+  .card { flex-direction:column; }
+  .card-left { width:100%; display:flex; align-items:center; gap:1rem; text-align:center; }
+  .biodata-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Small accessibility helpers */
+a:focus, button:focus { outline:3px solid rgba(11,99,246,0.14); outline-offset:3px; border-radius:8px; }

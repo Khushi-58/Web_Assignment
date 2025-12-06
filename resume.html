@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Khushi — Resume</title>
+
+  <!-- Optional: keep or change font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- INLINE CSS (professional, colored, border-boxed, responsive) -->
+  <style>
+    :root{
+      --primary: #2b6cb0;
+      --secondary: #2c5282;
+      --accent: #38b2ac;
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --muted:#6b7280;
+      --text: #1f2937;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(15,23,42,0.06);
+      --container: 1100px;
+    }
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .container{max-width:var(--container);margin:0 auto;padding:1.25rem}
+
+    /* Header */
+    .site-header{
+      background:transparent;padding:0.75rem 0;margin-bottom:0.5rem;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{font-weight:800;color:var(--primary);font-size:1.05rem;text-decoration:none}
+    .nav{display:flex;gap:0.6rem;align-items:center}
+    .nav a{font-weight:600;color:var(--muted);text-decoration:none;padding:0.35rem 0.6rem;border-radius:8px}
+    .nav a:hover{color:var(--primary);background:rgba(43,108,176,0.06)}
+
+    /* Main Layout */
+    .page{padding:1.5rem 0 3rem}
+    .card{
+      display:flex;gap:1.25rem;background:var(--card);
+      border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,0.04);
+    }
+
+    /* Left column (profile) */
+    .card-left{
+      width:300px;min-width:220px;flex-shrink:0;
+      background:linear-gradient(180deg, rgba(43,108,176,0.03), rgba(56,178,172,0.02));
+      padding:1rem;border-radius:10px;border:1px solid rgba(43,108,176,0.06);
+      display:flex;flex-direction:column;align-items:flex-start;
+    }
+    .avatar{
+      width:130px;height:130px;border-radius:14px;object-fit:cover;border:4px solid var(--primary);
+      display:block;margin-bottom:0.9rem;
+    }
+    .name{font-size:1.2rem;font-weight:800;color:var(--secondary);margin-bottom:0.15rem}
+    .role{color:var(--muted);font-weight:700;margin-bottom:0.9rem}
+    .contact-list{list-style:none;padding:0;margin:0;width:100%}
+    .contact-list li{display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;color:var(--text);font-size:0.95rem}
+    .contact-label{font-weight:700;color:var(--muted);width:86px;flex-shrink:0}
+    .skill-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.6rem}
+    .badge{
+      background:linear-gradient(90deg, rgba(43,108,176,0.08), rgba(56,178,172,0.05));
+      padding:0.35rem 0.7rem;border-radius:999px;font-weight:700;font-size:0.85rem;color:var(--secondary);
+      border:1px solid rgba(43,108,176,0.06);
+    }
+
+    /* Right column (main content) */
+    .card-right{flex:1;padding:0.25rem 0}
+    .section{margin-bottom:1.25rem}
+    .section h3{margin:0 0 0.5rem 0;font-size:1.05rem;color:var(--secondary)}
+    .summary{color:var(--muted);font-size:0.98rem}
+    .job{margin-bottom:0.9rem;padding-bottom:0.65rem;border-bottom:1px dashed rgba(15,23,42,0.04)}
+    .job h4{margin:0;font-size:1rem}
+    .job .muted{color:var(--muted);font-size:0.92rem;margin-bottom:0.35rem}
+    .job ul{margin:0.4rem 0 0 1.05rem}
+
+    /* Timeline visual */
+    .timeline{position:relative;padding-left:1rem;margin-top:0.6rem}
+    .timeline::before{
+      content:'';position:absolute;left:8px;top:0;bottom:0;width:3px;
+      background:linear-gradient(180deg,var(--accent),var(--secondary));opacity:0.12;border-radius:3px;
+    }
+    .timeline-item{position:relative;margin-bottom:1.2rem;padding-left:1.1rem}
+    .timeline-item::before{
+      content:'';position:absolute;left:-6px;top:6px;width:14px;height:14px;border-radius:50%;
+      background:var(--accent);border:3px solid var(--card);box-shadow:0 6px 16px rgba(11,99,246,0.10);
+    }
+
+    /* Projects */
+    .projects ul{margin-left:1.1rem}
+
+    /* Progress bars */
+    .skill-row{margin-top:0.6rem}
+    .skill-label{display:flex;justify-content:space-between;font-weight:700;color:var(--text);font-size:0.9rem}
+    .progress{height:10px;background:#e6f0ff;border-radius:999px;overflow:hidden;margin-top:0.35rem;border:1px solid rgba(15,23,42,0.03)}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--secondary));width:60%;border-radius:999px}
+
+    /* Download / actions */
+    .actions{margin-top:0.8rem}
+    .btn{
+      display:inline-block;padding:0.6rem 1rem;border-radius:10px;font-weight:800;text-decoration:none;color:#fff;
+      background:linear-gradient(90deg,var(--accent),var(--secondary));box-shadow:0 12px 30px rgba(11,99,246,0.12);
+      border:0;cursor:pointer;
+    }
+    .btn.ghost{background:transparent;color:var(--secondary);border:1px solid rgba(15,23,42,0.06)}
+
+    /* Footer small */
+    .foot-small{color:var(--muted);font-size:0.9rem;margin-top:1rem}
+
+    /* Print-friendly */
+    @media print{
+      body{background:#fff;color:#000}
+      .nav,.btn,.site-header{display:none}
+      .card{box-shadow:none;border:0;border-radius:0}
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .card{flex-direction:column}
+      .card-left{width:100%;display:flex;align-items:center;text-align:center;gap:0.8rem}
+      .contact-label{display:none}
+      .nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header container" role="banner">
+    <a class="brand" href="index.html">Khushi</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="resume.html" aria-current="page">Resume</a>
+      <a href="biodata.html">Bio-data</a>
+    </nav>
+  </header>
+
+  <main class="container page" role="main">
+    <section class="card" aria-labelledby="resume-heading">
+      <!-- LEFT: Profile & contacts -->
+      <aside class="card-left" aria-label="Profile">
+        <img src="IMG_4544.PNG" alt="Profile photo" class="avatar">
+        <div class="name">Khushi</div>
+        <div class="role">Frontend Developer</div>
+
+        <ul class="contact-list" aria-label="Contact details">
+          <li><span class="contact-label">Email</span><span><a href="mailto:khushi.23cs058@sode-edu.in">khushi.23cs058@sode-edu.in</a></span></li>
+          <li><span class="contact-label">Phone</span><span>+91-XXXXXXXXXX</span></li>
+          <li><span class="contact-label">Location</span><span>Udupi, Karnataka, India</span></li>
+          <li><span class="contact-label">LinkedIn</span><span><a href="#" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></span></li>
+        </ul>
+
+        <div style="width:100%;margin-top:0.9rem;">
+          <div style="font-weight:800;color:var(--secondary);margin-bottom:0.45rem">Skills</div>
+          <div class="skill-badges" aria-hidden="true">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Responsive UI</span>
+            <span class="badge">React (basic)</span>
+            <span class="badge">Git</span>
+          </div>
+
+          <div class="skill-row" aria-hidden="true" style="margin-top:0.8rem">
+            <div class="skill-label"><span>JavaScript</span><span>85%</span></div>
+            <div class="progress"><i style="width:85%"></i></div>
+            <div class="skill-label" style="margin-top:0.55rem"><span>CSS / Layout</span><span>90%</span></div>
+            <div class="progress"><i style="width:90%"></i></div>
+            <div class="skill-label" style="margin-top:0.55rem"><span>React</span><span>60%</span></div>
+            <div class="progress"><i style="width:60%"></i></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT: Summary, Experience, Education, Projects -->
+      <div class="card-right">
+        <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+          <div>
+            <h1 id="resume-heading" style="margin:0;font-size:1.25rem">Resume</h1>
+            <div class="small muted" style="color:var(--muted);margin-top:0.25rem">Frontend Developer — UI, accessibility and responsive web apps</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800;color:var(--secondary);font-size:1rem">Available for work</div>
+            <div class="foot-small">Updated: <span id="year"></span></div>
+          </div>
+        </header>
+
+        <section class="section summary" aria-labelledby="summary-heading">
+          <h3 id="summary-heading">Professional Summary</h3>
+          <p>Passionate front-end developer with hands-on experience building responsive, accessible websites and web applications. Strong focus on performance, visual polish and collaborating with design/back-end teams to deliver production-ready interfaces.</p>
+        </section>
+
+        <section class="section experience" aria-labelledby="exp-heading">
+          <h3 id="exp-heading">Experience</h3>
+
+          <div class="timeline" aria-hidden="false">
+            <div class="timeline-item job" role="article" aria-label="Front-end Intern — Company Name">
+              <h4>Front-end Intern — Company Name</h4>
+              <div class="muted">June 2024 — Aug 2024</div>
+              <ul>
+                <li>Built responsive UI components and static pages for the company product using HTML, CSS and JS.</li>
+                <li>Worked with designers to translate Figma designs into pixel-perfect pages and components.</li>
+                <li>Improved load performance by optimizing images and reducing render-blocking resources.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item job" role="article" aria-label="Freelance — UI Projects">
+              <h4>Freelance — UI Projects</h4>
+              <div class="muted">2023 — Present</div>
+              <ul>
+                <li>Delivered multiple portfolio sites and small business websites with a focus on accessibility and mobile-first design.</li>
+                <li>Integrated contact forms and deployments to GitHub Pages / Netlify for clients.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section education" aria-labelledby="edu-heading">
+          <h3 id="edu-heading">Education</h3>
+          <div class="job">
+            <h4>Bachelor of Technology — Computer Science</h4>
+            <div class="muted">SMVITM,Bantakal — 2023 to 2027</div>
+            <p style="margin-top:0.5rem;color:var(--muted)">Relevant coursework: Web Development, Data Structures, Computer Networks.</p>
+          </div>
+        </section>
+
+        <section class="section projects" aria-labelledby="proj-heading">
+          <h3 id="proj-heading">Selected Projects</h3>
+          <ul>
+            <li><strong>Bus Ticket Reservation System</strong> — Front-end with mock back-end using `data.json`. Responsive UI, seat selection flow and booking summary.</li>
+            <li><strong>Traffic Light Simulator</strong> — Course project: desktop simulation demonstrating state machines and timing logic.</li>
+            <li><strong>Personal Portfolio</strong> — This multi-page resume & biodata site, deployable to GitHub Pages / Netlify.</li>
+          </ul>
+        </section>
+
+        <section class="section" aria-labelledby="more-heading">
+          <h3 id="more-heading">Additional</h3>
+          <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap">
+            <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            <a class="btn ghost" href="mailto:you@example.com" style="background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--secondary);text-decoration:none;padding:0.55rem 0.9rem;border-radius:10px;font-weight:800;">Contact</a>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <div style="text-align:center;margin-top:1rem;color:var(--muted);font-size:0.95rem">
+      © <span id="year2"></span> Khushi — Built with HTML, CSS & JavaScript
+    </div>
+  </main>
+
+  <script>
+    // set years in footer and header
+    (function(){
+      const y = new Date().getFullYear();
+      const s = document.getElementById('year'); if(s) s.textContent = y;
+      const s2 = document.getElementById('year2'); if(s2) s2.textContent = y;
+    })();
+  </script>
+</body>
+</html>
